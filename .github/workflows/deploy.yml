@@ -25,7 +25,7 @@ jobs:
       - run: npm run build
       - name: Deploy with Wrangler
         if: github.event_name != 'pull_request'
-        run: npx --no-install wrangler pages deploy out --project-name=astere-software --branch="${GITHUB_REF_NAME}"
+        run: npx --no-install wrangler pages deploy dist --project-name=astere-software --branch="${GITHUB_REF_NAME}"
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

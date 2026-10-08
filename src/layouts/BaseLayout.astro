@@ -1,0 +1,75 @@
+---
+import Footer from '@/components/Footer.astro'
+import Header from '@/components/Header.astro'
+import {
+  companyName,
+  description as defaultDescription,
+  tagline,
+} from '@/lib/metadata'
+
+import '@/styles/tailwind.css'
+
+type Props = {
+  title?: string
+  description?: string
+}
+
+const { title, description = defaultDescription } = Astro.props
+const pageTitle = title
+  ? `${title} - ${companyName}`
+  : `${companyName} - ${tagline}`
+---
+
+<!doctype html>
+<html lang="en" class="h-full antialiased">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.ico" />
+    <script is:inline>
+      ;(() => {
+        let media = window.matchMedia('(prefers-color-scheme: dark)')
+
+        function stored() {
+          try {
+            return localStorage.getItem('theme')
+          } catch {
+            return null
+          }
+        }
+
+        function apply() {
+          let theme = stored()
+          let dark = theme === 'dark' || (theme !== 'light' && media.matches)
+          document.documentElement.classList.toggle('dark', dark)
+          document.documentElement.style.colorScheme = dark ? 'dark' : 'light'
+        }
+
+        apply()
+        media.addEventListener('change', () => {
+          // An explicit choice that now matches the OS reverts to following it.
+          let system = media.matches ? 'dark' : 'light'
+          if (stored() === system) {
+            try {
+              localStorage.setItem('theme', 'system')
+            } catch {}
+          }
+          apply()
+        })
+      })()
+    </script>
+  </head>
+  <body class="flex h-full bg-zinc-50 dark:bg-black">
+    <div class="flex w-full">
+      <div class="relative flex w-full flex-col">
+        <Header />
+        <main class="flex-auto">
+          <slot />
+        </main>
+        <Footer />
+      </div>
+    </div>
+  </body>
+</html>
