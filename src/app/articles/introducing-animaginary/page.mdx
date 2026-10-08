@@ -13,7 +13,7 @@ export const metadata = {
   description: article.description,
 }
 
-export default (props) => <ArticleLayout article={article} {...props} />
+export default ({ children }) => <ArticleLayout article={article}>{children}</ArticleLayout>
 
 When you’re building a website for a company as ambitious as Planetaria, you need to make an impression. I wanted people to visit our website and see animations that looked more realistic than reality itself.
 

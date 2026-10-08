@@ -1,0 +1,5 @@
+/about /404 307
+/articles /404 307
+/projects /404 307
+/feed.xml /404 307
+/articles/* /404 307

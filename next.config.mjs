@@ -4,31 +4,10 @@ import remarkGfm from 'remark-gfm'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  images: { unoptimized: true },
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
-  async redirects() {
-    return [
-      {
-        source: '/about',
-        destination: '/404',
-        permanent: false,
-      },
-      {
-        source: '/articles/:title*',
-        destination: '/404',
-        permanent: false,
-      },
-      {
-        source: '/projects',
-        destination: '/404',
-        permanent: false,
-      },
-      {
-        source: '/feed.xml',
-        destination: '/404',
-        permanent: false,
-      },
-    ]
-  },
+
 }
 
 const withMDX = nextMDX({
