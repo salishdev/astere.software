@@ -1,0 +1,52 @@
+---
+import { Image } from 'astro:assets'
+
+import macAppStoreBadgeBlack from '@/images/apple/mac_app_store_badge_black.svg'
+import macAppStoreBadgeWhite from '@/images/apple/mac_app_store_badge_white.svg'
+import radialTimer from '@/images/apps/rad-timer.png'
+---
+
+<div class="bg-gray-200 dark:bg-zinc-800">
+  <div class="flex justify-center gap-5 overflow-hidden sm:gap-8">
+    <div class="flex w-44 flex-col items-center sm:w-72">
+      <div class="flex-none sm:rounded-2xl">
+        <Image
+          src={radialTimer}
+          alt=""
+          widths={[176, 288, 352, 576]}
+          sizes="(min-width: 640px) 18rem, 11rem"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+      <div class="-mt-4 mb-6">
+        <h2 class="text-center text-2xl font-black tracking-wider text-zinc-600 dark:text-zinc-300">
+          Radial Timer
+        </h2>
+        <p class="mt-2 text-center text-sm leading-tight text-zinc-600 dark:text-zinc-300">
+          Ridiculously simple timer for your menu bar
+        </p>
+        <div class="mt-3 flex justify-center">
+          <a
+            href="https://apps.apple.com/us/app/radial-timer/id6581479928?mt=12"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block"
+            aria-label="Download Radial Timer on the Mac App Store"
+          >
+            <Image
+              src={macAppStoreBadgeBlack}
+              alt="Download on the Mac App Store"
+              class="dark:hidden"
+            />
+            <Image
+              src={macAppStoreBadgeWhite}
+              alt="Download on the Mac App Store"
+              class="hidden dark:block"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
